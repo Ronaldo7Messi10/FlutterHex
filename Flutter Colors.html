@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Flutter Hex Colors </title>
+
+<style type='text/css'>
+
+#test{
+width:300px;
+height:100px;
+text-align:center;
+line-height:100px;
+font-size:20px;
+margin-top:30px;
+color:pink;
+box-shadow:0px 0px 7px 0px rgb(0,0,0,0.3);
+}
+
+</style>
+
+<meta name='viewport' content='width=device-width,initial-scale=1.0'>
+
+</head>
+<body>
+<center>
+<h1> Flutter Hex Colors </h1>
+<p> Hey! here you can get the Colors value of give Hex Color </p>
+
+<input id='hexcolor' placeholder='Enter the Hex Color'>
+<input onclick='showColor()' type='submit' value='Colors Value'>
+<br>
+<div id='test'> </div>
+
+<script type='text/javascript'>
+var hex=document.getElementById("hexcolor");
+var test=document.getElementById("test");
+function showColor(){
+test.style.backgroundColor=hex.value;
+hexval=hex.value.replace('#','');
+
+
+if(hexval.length==6){
+ hexval="FF"+hexval;
+
+}
+
+if(hexval.length==8){
+
+//alert(parseInt(`0x${hexval}`));
+some=parseInt(`0x${hexval}`);
+test.innerHTML=some;
+
+test.style.color=invertColor(hex.value);
+}
+
+
+}//end of funtion
+
+
+const invertColor = (bg) => {
+	bg=parseInt(Number(bg.replace('#', '0x')), 10)
+  bg=~bg
+  bg=bg>>>0
+  bg=bg&0x00ffffff
+  bg='#' + bg.toString(16).padStart(6, "0")
+  
+  return bg
+}
+
+</script>
+
+</body>
+</html>
